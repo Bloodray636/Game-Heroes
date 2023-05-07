@@ -1,0 +1,3122 @@
+* 
+	margin: 0
+	padding: 0
+	-webkit-user-select: none
+	-khtml-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+
+/*Font*/
+
+@font-face 
+	font-family: "Trajan"
+	src: url("../fonts/ofont_ru_Trajan.ttf")
+	font-display: swap
+
+html
+	min-height:100%
+
+body
+	margin: 0
+	padding: 0
+	min-height:100%
+	transition: 0.3s ease
+	overflow-x: hidden
+
+a 
+	text-decoration: none!important
+
+
+#oval
+	width: 200px
+	height: 100px
+	background: red
+	-moz-border-radius: 100px / 50px
+	-webkit-border-radius: 100px / 50px
+	border-radius: 100px / 50px
+
+@function random_range($min, $max)
+	$rand: random()
+	$random_range: $min + floor($rand * (($max - $min) + 1))
+	@return $random_range
+
+.snow
+	position: fixed
+	top:0
+	width: 3px
+	height: 3px
+	background-color: #de7e00
+	border-radius: 50%
+	box-shadow:0 0 5px #AB000B
+	background-size: cover
+	background-repeat: no-repeat
+
+	@for $i from 1 through 50
+		$random-x: random(1000000) * 0.0001vw
+		$random-offset: random_range(100000, 100000) * 0.0001vw
+		$random-x-end: $random-x + $random-offset
+		$random-x-end-yoyo: $random-x / ($random-offset / 2)
+		$random-yoyo-time: random_range(0, 0) / 10000000
+		$random-yoyo-y: $random-yoyo-time + 100vh
+		$random-scale: random(10000) * 0.0001
+		$fall-duration: random_range(10, 30) * 0.50s
+		$fall-delay: random(30) * -0.50s
+		&:nth-child(#{$i})
+			opacity: random(10000) * 0.0001
+			transform: translate($random-x, -10px) scale($random-scale)
+			animation: fall-#{$i} $fall-duration $fall-delay linear infinite
+			
+		@keyframes fall-#{$i}
+			#{percentage($random-yoyo-time)}
+				transform: translate($random-x-end, $random-yoyo-y) scale($random-scale)
+			to
+				transform: translate($random-x-end-yoyo, 100vh) scale($random-scale)
+
+@media (max-width: 480px)
+	.snow
+		position: fixed
+		top:0
+		width: 3px
+		height: 3px
+		background-color: #de7e00
+		border-radius: 50%
+		box-shadow:0 0 5px #AB000B
+		background-size: cover
+		background-repeat: no-repeat
+		@for $i from 1 through 50
+			$random-x: random(1000000) * 0.0001vw
+			$random-offset: random_range(100000, 100000) * 0.0001vw
+			$random-x-end: $random-x + $random-offset
+			$random-x-end-yoyo: $random-x / ($random-offset / 2)
+			$random-yoyo-time: random_range(0, 0) / 10000000
+			$random-yoyo-y: $random-yoyo-time + 100vh
+			$random-scale: random(10000) * 0.0001
+			$fall-duration: random_range(10, 30) * 0.50s
+			$fall-delay: random(30) * -0.50s
+			&:nth-child(#{$i})
+				opacity: random(10000) * 0.0001
+				transform: translate($random-x, -10px) scale($random-scale)
+				animation: fall-#{$i} $fall-duration $fall-delay linear infinite
+
+.faction
+	height: 100%
+
+.blur-setting
+	position: absolute
+	top:7%
+	right:0
+	left:0
+	height:570px
+	max-width: 100% !important
+	width:96%
+	margin: 0 auto
+	backdrop-filter: blur(16px)!important
+	z-index: -1
+
+@media (max-width: 767px)
+	.blur-setting
+		max-width:450px
+		height:770px
+
+@media (max-width: 500px)
+	.blur-setting
+		height:880px
+
+@media (max-width: 364px)
+	.blur-setting
+		max-width:450px
+		height:950px
+
+@media (max-width: 359px)
+	.blur-setting
+		max-width:450px
+		height:950px
+
+.title-setting
+	color:#FFA40C
+	font-size:30px
+	margin-top: 60px
+
+@media (max-width: 767px)
+	.title-setting
+		margin-top: 80px
+		margin-left: 10px
+
+@media (max-width: 500px)
+	.title-setting
+		margin-top: 100px
+		margin-left: 10px
+
+.title-volume
+	color: #FFA40C
+	font-size: 22px
+
+.sound-effects-title
+	color: #fff
+	font-size: 16px
+	margin-top: 25px
+
+.conclusion
+	color:#fff
+	font-size: 14px
+	padding-bottom: 10px
+	margin-left: 20px
+
+.check-sound
+	margin-top: 30px!important
+
+@media (max-width: 767px)
+	.check-sound
+		margin-top: 0px!important
+
+.input-setting
+	margin: 35px 0
+
+@media (max-width: 767px)
+	.input-setting
+		margin: 10px 0
+
+.setting-check-input
+	background-image: url(../img/check.png)
+	background-size: cover
+	margin: 10px 10px!important
+	width: 27px!important
+	height: 26px!important
+	background-color: transparent!important
+	border-radius: 0!important
+	border: none !important
+	box-shadow: 0 0 0 0 transparent!important
+	transition: 0.3s ease
+
+.setting-check-input:checked[type=checkbox] 
+	background-image: url(../img/check-focus.png)!important
+
+.setting-check-label
+	font-size: 14px
+	color:#fff
+	width:230px
+	margin-top: 15px
+	margin-left: 10px
+
+@media (max-width: 328px)
+	.form-check-label
+		margin-top: 5px
+
+.lang__link
+	width:182px
+	height:22px
+	background-image: url(../img/lang-bg.png)
+	background-color: transparent
+	border:none
+	color:#fff
+	font-size:12px
+	margin: 10px auto
+	transition: 0.3s ease
+	border: none
+
+.title-lang
+	color:#FFA40C
+	font-size:22px
+	margin-top: 20px!important
+
+.title-lang-link
+	color:#fff
+	font-size:16px
+	margin-top: 20px!important
+
+.lang-button-active 
+	width:182px
+	height:22px
+	background-image: url(../img/lang-bg-active.png)
+	background-color: transparent
+	border:none
+	color:#fff
+	font-size:12px
+	margin: 10px auto
+	transition: 0.3s ease
+
+@media (max-width: 500px)
+	.col-6
+		width: 100% !important
+		align-items: center
+
+.apply
+	border: none
+	width: 224px !important
+	height:43px
+	background-image: url(../img/apply.png)
+	background-size: cover
+	background-color: transparent
+	border:none
+	color:#FFA40C
+	font-size:16px
+	margin:0 auto
+	margin-top: 30px!important
+
+@media (max-width: 500px)
+	.apply
+		width: 200px !important
+		height:38.39px
+		background-image: url(../img/apply-mobile.png)
+		background-size: cover
+		background-color: transparent
+		border:none
+		color:#FFA40C
+		font-size:16px
+		margin:0 auto
+		margin-top: 15px!important
+
+.apply-close
+	border: none
+	width: 224px !important
+	height:43px
+	background-image: url(../img/apply-close.png)
+	background-size: cover
+	background-color: transparent
+	border:none
+	color:#fff
+	font-size:16px
+	margin:0 auto
+	margin-top: 30px!important
+
+@media (max-width: 767px)
+	.apply-close
+		margin-top: 20px!important
+
+@media (max-width: 500px)
+	.apply-close
+		width: 200px !important
+		height:38.39px
+		background-image: url(../img/apply-mobile-close.png)
+		background-size: cover
+		background-color: transparent
+		border:none
+		color:#fff
+		font-size:16px
+		margin:0 auto
+		margin-top: 15px!important
+
+/*Map-selection*/
+
+.map-selection
+	background-image: url(../img/background-selection.jpg)
+	background-size: cover
+	background-repeat: no-repeat
+	min-height: 100vh
+	display: flex
+	align-items: center
+	justify-content: center
+
+.map-selection .container-fluid
+	max-width: 1300px!important
+
+.card1 .card-body
+	width:252px
+	height:550px
+	border-radius: 5px
+
+.owl-carousel 
+	touch-action: none
+
+.thumbnail
+	width: 100% !important
+	max-width: 1300px
+
+.owl-carousel .owl-stage 
+	display: flex
+	position:relative
+
+.owl-carousel .owl-item 
+	display: flex
+	flex: 0 auto
+	width: 100%!important
+
+.owl-carousel .thumbnail 
+	display: flex
+	flex-direction: column
+	margin: 0 auto
+
+.owl-carousel .thumbnail .caption 
+	display: flex
+	flex: auto
+	flex-direction: column
+
+.owl-carousel .thumbnail .caption .flex-text 
+	flex-grow: 1
+
+.owl-nav
+	display: none
+
+.map
+	height:100%
+	position: relative
+	left:0
+	right:0
+	top:0
+
+.map .card-body
+	width:250px
+	height:550px
+	margin: 0 auto
+
+.map .card-body img
+	width:100%
+	margin: auto
+
+.map-title
+	color:#FFA40C
+	font-size:30px
+	position: absolute
+	top:40%
+	left:0
+	right:0
+
+.map-gulp
+	animation: fadeInLeft
+	--animate-duration: 1200ms
+
+.map-dungeon
+	animation: fadeInRight
+	--animate-duration: 1200ms
+
+.map-tower
+	animation: fadeInRight
+
+.map-ruins
+	animation: fadeInLeft
+
+@media (max-width: 1299px) 
+	.map-castle
+		animation: fadeInLeft
+	.map-gulp
+		animation: none
+	.map-ruins
+		--animate-duration: 1200ms
+
+@media (max-width: 991px) 
+	.map-tower
+		animation: none
+	.map-ruins
+		animation: none
+	.map-castle
+		--animate-duration: 1200ms
+
+@media (max-width: 767px) 
+	.map-tower
+		animation: fadeInLeft
+		--animate-duration: 1200ms
+	.map-castle
+		animation: none
+
+@media (max-width: 559px) 
+	.map-tower
+		animation: none
+
+.level
+	color:#fff
+	font-size:26px
+	position: absolute
+	top:49%
+	left:0
+	right:0
+
+.map-selection-title
+	color: #FFA40C
+	font-size:40px
+
+.back
+	margin-right: 20px
+
+@media (max-width: 1399px) 
+	.back
+		margin-right: 20px
+
+
+@media (max-width: 1299px) 
+	.back
+		margin-right: 50px
+
+
+@media (max-width: 1199px) 
+	.back
+		margin-right: 50px
+
+
+@media (max-width: 991px) 
+	.back
+		margin-right: 70px
+
+
+@media (max-width: 767px) 
+	.back
+		margin-right: 30px
+
+.back a
+	color: #fff !important
+	text-decoration: none
+	font-size:26px
+
+/*Registration*/
+
+.registration-bg
+	background-color: black
+	background-image: url(../img/smoke-gg-reg.png)
+	background-size: cover
+	background-repeat: no-repeat
+	min-height: 100%
+	font-family: "Trajan"
+
+.form-reg .title-block
+	width:100%
+	margin-top: 0px!important
+	margin-bottom: 39px
+
+@media (max-width: 767px)
+	.form-reg .title-block
+		font-size: 20px
+		height: 20px
+
+.form-reg .title-block img
+	width:123px
+	height: 34px
+
+.form-reg .title-under-fraction
+	font-size: 20px
+	color: #878582
+	margin-top: 29px
+
+.form-reg
+	height: 100vh
+	display: flex
+	justify-content: start
+	align-items: center
+
+.form-reg form
+	width: 366px!important
+	margin: 0 auto
+
+.title-reg
+	color:#FFF
+	font-size:30px
+
+.input-reg
+	position: relative
+	margin: 32px 0!important
+
+.form-label
+	color:#878582
+	font-size:16px
+	margin-left: 0px
+	margin-bottom: 8px!important
+
+@media (max-width: 328px)
+	.form-label
+		margin-left: 40px
+
+.btn-form
+	margin-top: 32px!important
+	height:42px
+	width: 366px !important
+	background-color: #121212!important
+	border: none !important
+	color: #878582 !important
+	font-size:16px
+	box-shadow: 0 0 0 0 transparent!important
+	display: flex
+	justify-content: center
+	align-items: center
+	border-radius: 6px!important
+
+.btn-faction
+	margin-top: 10px
+	color: #fff !important
+	font-size: 16px
+
+.btn-faction a
+	color: #fff !important
+	font-size: 16px
+
+.form-reg .password-control, .password-control2 
+	position: absolute
+	top: 60%
+	right: 0
+	display: inline-block
+	width: 22px
+	height: 18px
+	background: url(../img/eye.png) 0 0 no-repeat
+	background-size: cover
+	color: #878582 !important
+	transition: 0.3s ease
+	margin-right: 32px 
+
+.password-control, .password-control2 
+	position: absolute
+	top: 43%
+	right: 0
+	display: inline-block
+	width: 22px
+	height: 18px
+	background: url(../img/eye.png) 0 0 no-repeat
+	background-size: cover
+	color: #878582 !important
+	transition: 0.3s ease
+	margin-right: 32px 
+
+.password-control.view, .password-control2.view 
+	background: url(../img/eye-close.png) 0 0 no-repeat
+	background-size: cover
+	transition: 0.3s ease
+
+@media (max-width: 328px)
+	.password-control, .password-control2 
+		position: absolute
+		top: 70%
+		right: 19%
+		display: inline-block
+		width: 15px
+		height: 15px
+		background: url(../img/eye.png) 0 0 no-repeat
+		background-size: cover
+		color: #fff !important
+		transition: 0.3s ease
+
+.form-control
+	height:51px
+	width: 366px !important
+	background-color: #121212!important
+	border: none !important
+	background-size: cover
+	color: #878582 !important
+	padding: 0 32px!important
+	font-size:16px
+	margin: 0 auto
+	box-shadow: 0 0 0 0 transparent!important
+	border-radius: 6px!important
+
+@media (max-width: 328px)
+	.form-control
+		height:34.62px
+		width: 180px !important
+		padding: 0 20px !important
+
+.link-recovery-reg
+	margin-top: 14px
+
+.link-recovery-reg a
+	color: #878582!important
+	font-size: 16px
+
+#exampleInputPassword1, #exampleInputPassword2
+	padding: 0 60px 0 30px !important
+
+@media (max-width: 328px)
+	#exampleInputPassword1, #exampleInputPassword2
+		padding: 0 40px 0 20px !important
+
+.form-check-input
+	background-image: url(../img/check.png)
+	background-size: cover
+	margin: 10px 10px!important
+	width: 27px!important
+	height: 26px!important
+	background-color: transparent!important
+	border-radius: 0!important
+	border: none !important
+	box-shadow: 0 0 0 0 transparent!important
+	transition: 0.3s ease
+
+.form-check-input:checked[type=checkbox] 
+	background-image: url(../img/check-focus.png)!important
+
+.form-check-label
+	font-size: 10px
+	color:#fff
+	line-height:13.55px
+	width:230px
+	margin-top: 10px
+
+@media (max-width: 328px)
+	.form-check-label
+		margin-top: 5px
+
+.registration-login
+	margin-top: 10px
+	color: #fff !important
+	font-size: 16px
+
+.registration-login a
+	color: #fff !important
+	font-size: 16px
+
+.error-message-not-valid-data
+	position: absolute!important
+	top: 28%!important
+	left: 40%!important
+
+.error-message-data-mismatch
+	position: absolute!important
+	top:49%!important
+	left: 49%!important
+
+.error-message-accept-agreement
+	position: absolute!important
+	top:69%!important
+	left: 52%!important
+
+@media (max-width: 328px)
+	.error-message-accept-agreement, .error-message-data-mismatch, .error-message-not-valid-data
+		left: 20%!important
+
+.login-bg
+	background-color: black
+	background-image: url(../img/smoke-gg.png)
+	background-size: cover
+	background-repeat: no-repeat
+	min-height: 100%
+	font-family: "Trajan"
+
+.form-login .title-block
+	width:100%
+	margin-top: 0px!important
+	margin-bottom: 39px
+
+@media (max-width: 767px)
+	.form-login .title-block
+		font-size: 20px
+		height: 20px
+
+.form-login .title-block img
+	width:123px
+	height: 34px
+
+.form-login .title-under-fraction
+	font-size: 20px
+	color: #878582
+	margin-top: 29px
+
+.form-login
+	height: 100vh
+	display: flex
+	justify-content: end
+	align-items: center
+
+.form-login form
+	width: 366px!important
+	margin: 0 auto
+
+.title-login
+	color:#FFF
+	font-size:30px
+
+.input-login
+	position: relative
+	margin: 32px 0!important
+
+.form-label
+	color:#878582
+	font-size:16px
+	margin-left: 0px
+	margin-bottom: 8px!important
+
+@media (max-width: 328px)
+	.form-label
+		margin-left: 40px
+
+.btn-faction
+	margin-top: 10px
+	color: #fff !important
+	font-size: 16px
+
+.btn-faction a
+	color: #fff !important
+	font-size: 16px
+
+.link-recovery
+	margin-top: 8px
+
+.link-recovery a
+	color: #878582!important
+	font-size: 16px
+
+.recovery
+	background-image: url(../img/neutrality.jpg)
+	background-size: cover
+	background-repeat: no-repeat
+	min-height: 100vh
+
+.border-recovery
+	width: 443px!important
+	margin: 0 auto
+	position: relative
+	top:0
+	left:0
+	right:0
+	height: 100% !important
+	z-index: 2
+
+.border-recovery picture img
+	width: 100%
+	height:auto
+	margin: 0 auto
+
+@media (max-width: 440px)
+	.border-recovery picture img
+		height:450px
+
+
+@media (max-width: 328px)
+	.border-recovery picture img
+		height:450px
+
+.blur-recovery
+	position: absolute
+	top:15%
+	right:0
+	left:0
+	height:370px
+	max-width:400px
+	width:90%
+	margin: 0 auto
+	backdrop-filter: blur(16px)
+	z-index: -1
+
+@media (max-width: 440px)
+	.blur-recovery
+		height:380px
+
+
+@media (max-width: 328px)
+	.blur-recovery
+		height:380px
+
+.form-recovery
+	z-index: 3 !important
+	position: absolute
+	top:25%
+	right:0
+	left:0
+	max-width:260px
+	width: 100% !important
+	margin: 0 auto
+
+.form-recovery form
+	max-width:260px
+	width: 100% !important
+
+@media (max-width: 328px)
+	.form-recovery
+		max-width:225px
+		margin: auto
+
+.title-recovery
+	color:#FFA40C
+	font-size:30px
+
+.input-recovery
+	margin: 11px 0!important
+
+@media (max-width: 328px)
+	.input-recovery
+		margin: 30px 0!important
+
+.btn-recovery
+	margin-top: 50px!important
+	background-image: url(../img/btn-registration.png)
+	height:50px
+	width: 260px !important
+	background-color: transparent!important
+	border: none !important
+	background-size: cover
+	color: #FFA40C !important
+	font-size:16px
+	margin: auto
+	box-shadow: 0 0 0 0 transparent!important
+	padding-top: 15px
+
+.btn-recovery a
+	color: #FFA40C !important
+	font-size:16px
+	padding: 9px 60px
+
+@media (max-width: 328px)
+	.btn-recovery
+		margin-top: 50px!important
+		padding-top: 5px
+		width: 180px !important
+		height:34.62px
+
+.code
+	background-image: url(../img/neutrality.jpg)
+	background-size: cover
+	background-repeat: no-repeat
+	min-height: 100vh
+
+.border-code
+	width: 443px!important
+	margin: 0 auto
+	position: relative
+	top:0
+	left:0
+	right:0
+	height: 100% !important
+	z-index: 2
+
+.border-code picture img
+	width: 100%
+	height:auto
+	margin: 0 auto
+
+@media (max-width: 440px)
+	.border-code picture img
+		height:450px
+
+@media (max-width: 328px)
+	.border-code picture img
+		height:450px
+
+.blur-code
+	position: absolute
+	top:15%
+	right:0
+	left:0
+	height:370px
+	max-width:400px
+	width:90%
+	margin: 0 auto
+	backdrop-filter: blur(16px)
+	z-index: -1
+
+@media (max-width: 440px)
+	.blur-code
+		height:380px
+
+
+@media (max-width: 328px)
+	.blur-code
+		height:380px
+
+.form-code
+	z-index: 3 !important
+	position: absolute
+	top:25%
+	right:0
+	left:0
+	max-width:260px
+	width: 100% !important
+	margin: 0 auto
+
+.form-code form
+	max-width:260px
+	width: 100% !important
+
+@media (max-width: 328px)
+	.form-code
+		max-width:225px
+		margin: auto
+
+.title-code
+	color:#FFA40C
+	font-size:30px
+
+.input-code
+	margin: 15px 0!important
+
+@media (max-width: 328px)
+	.input-code
+		margin: 30px 0!important
+
+.btn-code
+	margin-top: 40px!important
+	background-image: url(../img/btn-registration.png)
+	height:50px
+	width: 260px !important
+	background-color: transparent!important
+	border: none !important
+	background-size: cover
+	color: #FFA40C !important
+	font-size:16px
+	margin: auto
+	box-shadow: 0 0 0 0 transparent!important
+	padding-top: 15px
+
+.btn-code a
+	color: #FFA40C !important
+	font-size:16px
+	padding: 9px 60px
+
+@media (max-width: 328px)
+	.btn-code
+		margin-top: 50px!important
+		padding-top: 5px
+		width: 180px !important
+		height:34.62px
+
+/*get-code*/
+
+.code-reg
+	background-image: url(../img/neutrality.jpg)
+	background-size: cover
+	background-repeat: no-repeat
+	min-height: 100vh
+
+.border-code-reg
+	width: 443px!important
+	margin: 0 auto
+	position: relative
+	top:0
+	left:0
+	right:0
+	height: 100% !important
+	z-index: 2
+
+.border-code-reg picture img
+	width: 100%
+	height:auto
+	margin: 0 auto
+
+@media (max-width: 440px)
+	.border-code-reg picture img
+		height:450px
+
+@media (max-width: 328px)
+	.border-code-reg picture img
+		height:450px
+
+.blur-code-reg
+	position: absolute
+	top:15%
+	right:0
+	left:0
+	height:370px
+	max-width:400px
+	width:90%
+	margin: 0 auto
+	backdrop-filter: blur(16px)
+	z-index: -1
+
+@media (max-width: 440px)
+	.blur-code-reg
+		height:380px
+
+@media (max-width: 328px)
+	.blur-code-reg
+		height:380px
+
+.form-code-reg
+	z-index: 3 !important
+	position: absolute
+	top:25%
+	right:0
+	left:0
+	max-width:260px
+	width: 100% !important
+	margin: 0 auto
+
+.form-code-reg form
+	max-width:260px
+	width: 100% !important
+
+@media (max-width: 328px)
+	.form-code-reg
+		max-width:225px
+		margin: auto
+
+.title-code-reg
+	color:#FFA40C
+	font-size:30px
+
+.input-code-reg
+	margin: 45px 0!important
+
+@media (max-width: 328px)
+	.input-code-reg
+		margin: 60px 0!important
+
+.btn-code-reg
+	margin-top: 40px!important
+	background-image: url(../img/btn-registration.png)
+	height:50px
+	width: 260px !important
+	background-color: transparent!important
+	border: none !important
+	background-size: cover
+	color: #FFA40C !important
+	font-size:16px
+	margin: auto
+	box-shadow: 0 0 0 0 transparent!important
+	padding-top: 15px
+
+.btn-code-reg a
+	color: #FFA40C !important
+	font-size:16px
+	padding: 9px 60px
+
+@media (max-width: 328px)
+	.btn-code-reg
+		margin-top: 50px!important
+		padding-top: 5px
+		width: 180px !important
+		height:34.62px
+
+.valid-data 
+	position: absolute
+	top: 7%
+	left: 20%
+	right: 0
+	color: #FF0002
+	font-size: 12px
+	align-items: center
+	justify-content: center
+
+.valid-data-login
+	position: absolute
+	top: 9%
+	left: 20%
+	right: 0
+	color: #FF0002
+	font-size: 12px
+	align-items: center
+	justify-content: center
+	
+/*Introductory*/
+.introductory
+	font-family: "Trajan"!important
+
+.performance
+	background-image: url(../img/smoke-bg.png)
+	background-size: cover
+	background-repeat: no-repeat
+	background-position: center center
+	height:100vh
+
+
+.blacker_blur
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 93.26%)
+	opacity: 0.8
+	width: 100%
+	height: 47px
+	position: absolute
+	bottom: 0
+
+.snow2
+	position: absolute
+	top:0
+	left: -75%
+	width: 4px
+	height: 4px
+	background-color: #de7e00
+	border-radius: 50%
+	box-shadow:0 0 5px #AB000B
+	background-size: cover
+	background-repeat: no-repeat
+	z-index: 9
+
+	@for $i from 1 through 50
+		$random-x2: random(1000000) * 0.0001vw
+		$random-offset2: random_range(-100000, -100000) * 0.0001vw
+		$random-x-end2: $random-x2 + $random-offset2
+		$random-x-end-yoyo2: $random-x2 / ($random-offset2 / 2)
+		$random-yoyo-time2: random_range(0, 0) / 10000000
+		$random-yoyo-y: $random-yoyo-time2 + 100vh
+		$random-scale2: random(10000) * 0.0001
+		$fall-duration2: random_range(10, 30) * 0.25s
+		$fall-delay2: random(30) * -0.25s
+		&:nth-child(#{$i})
+			opacity: random(10000) * 0.0001
+			transform: translate($random-x2, -10px) scale($random-scale2)
+			animation: fall-#{$i} $fall-duration2 $fall-delay2 linear infinite
+			
+		@keyframes fall-#{$i}
+			#{percentage($random-yoyo-time2)}
+				transform: translate($random-x-end2, $random-yoyo-y) scale($random-scale2)
+			to
+				transform: translate($random-x-end-yoyo2, 100vh) scale($random-scale2)
+
+@media (max-width: 480px)
+	.snow2
+		position: absolute
+		top:0
+		left: 0
+		width: 3px
+		height: 3px
+		background-color: #de7e00
+		border-radius: 50%
+		box-shadow:0 0 5px #AB000B
+		background-size: cover
+		background-repeat: no-repeat
+		z-index: 9
+		@for $i from 1 through 50
+			$random-x2: random(1000000) * 0.0001vw
+			$random-offset2: random_range(-100000, 100000) * -0.0001vw
+			$random-x-end2: $random-x2 + $random-offset2
+			$random-x-end-yoyo2: $random-x2 / ($random-offset2 / 2)
+			$random-yoyo-time2: random_range(0, 0) / 10000000
+			$random-yoyo-y: $random-yoyo-time2 + 100vh
+			$random-scale2: random(10000) * 0.0001
+			$fall-duration2: random_range(10, 30) * 0.090s
+			$fall-delay2: random(30) * -0.090s
+			&:nth-child(#{$i})
+				opacity: random(10000) * 0.0001
+				transform: translate($random-x2, -10px) scale($random-scale2)
+				animation: fall-#{$i} $fall-duration2 $fall-delay2 linear infinite
+
+.navbar
+	height: auto!important
+	z-index: 10
+
+.navbar-brand
+	color: #fff
+	font-size: 28px!important
+	background: linear-gradient(180deg, rgb(255, 255, 255) 0%, #696969 100%)!important
+	-webkit-background-clip: text!important
+	-webkit-text-fill-color: transparent!important
+	background-clip: text!important
+	filter: drop-shadow(0px 0px 4px #000)!important
+
+.navbar-nav
+	margin-top: 48px!important
+	width: 100% !important
+
+.nav-item
+	margin: auto 30px!important
+
+@media (max-width: 991px)
+	.nav-item
+		margin: auto 26px!important
+
+
+.navbar-nav .nav-link
+	padding: 10px!important
+	color: #d2c8ae !important
+	font-size: 16px
+	letter-spacing: -0.05em
+	line-height: 19.2px
+	border-bottom: 1.5px solid transparent
+	margin-bottom: 10px
+	transition: .3s ease
+
+.navbar-nav a.active
+	transition: .3s ease
+	border-bottom: 1.5px solid #878582
+	filter: drop-shadow(0px 0px 8px #FFFFFF)
+
+.navbar-nav .nav-link:hover
+	transition: .3s ease
+	border-bottom: 1.5px solid #878582
+	filter: drop-shadow(0px 0px 8px #FFFFFF)
+
+.navbar-nav .nav-link:active
+	transition: .3s ease
+	border-bottom: 1.5px solid #878582
+	filter: drop-shadow(0px 0px 50px #FFFFFF)
+
+
+@media (max-width: 767px)
+	.navbar
+		background-size: 100% 44px
+		min-height: 44px!important
+
+.navbar-toggler
+	padding: 0!important
+	border: none !important
+	width: 30px
+	height: 25px
+
+@media (max-width: 767px)
+	.collapse:not(.show)
+		display: block
+
+.navbar-toggler:focus
+	box-shadow: none !important
+
+.navbar-toggler-icon img
+	width: 12px
+	height: 10px
+	margin: auto
+
+.btn-close-menu
+	display: none
+
+@media (max-width: 767px)
+	.btn-close-menu
+		display: block
+
+.title-game
+	width: 100%
+	font-size: 30px
+	color: #878582
+	letter-spacing: -0.05em
+	margin-bottom: 24px
+
+@media (max-width: 767px)
+	.title-game
+		font-size: 18px
+
+@media (max-width: 480px)
+	.title-game
+		font-size: 16px
+
+@media (max-width: 320px)
+	.title-game
+		font-size: 14px
+
+.title-logo
+	width:100%
+	height: auto
+	margin-top: 129px!important
+	margin-bottom: 50px
+
+.title-logo .title-news
+	font-size: 50px!important
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, #696969 100%)
+	-webkit-background-clip: text
+	-webkit-text-fill-color: transparent
+	background-clip: text
+	filter: drop-shadow(1px 1px 1px #FFFFFF)
+	font-style: normal
+	font-weight: 400
+	font-size: 50px
+	letter-spacing: 0.08em
+
+.heroes .heroes-play
+	width: 25%
+	max-width: 100%
+	height: 100vh
+	position: absolute
+	left: 0
+	top: 0 
+	object-fit: cover
+	object-position: right
+
+@media (max-width: 480px)
+	.heroes
+		display: none
+
+@media (max-width: 767px)
+	.heroes .heroes-play
+		width: 35%
+
+.start-game
+	position: relative
+	height: 100vh
+
+.play
+	width: 506px
+	height: auto
+	position: absolute
+	top: 30%
+	right: 6.1%
+
+@media (max-width: 767px)
+	.play
+		width: 303px
+		margin: 0 auto
+		right: 0
+		left: 0
+
+@media (max-width: 480px)
+	.play
+		width: 240px
+
+
+.play img
+	width: 300px!important
+	height: auto !important
+
+@media (max-width: 480px)
+	.play img
+		width: 100%!important
+
+.play .nav-link
+	color: #d2c8ae !important
+	font-size: 24px
+	text-shadow: 4px 4px 12px rgba(255, 255, 255, 0.5)
+	display: block
+	width: 250px
+	height: auto
+	margin: 0 auto !important
+
+@media (max-width: 767px)
+	.play .nav-link
+		font-size: 16px
+
+@media (max-width: 480px)
+	.play .nav-link
+		font-size: 14px
+
+@media (max-width: 320px)
+	.play .nav-link
+		font-size: 12px
+
+.container-news .col-6
+	max-width:640px!important
+	width: 50%
+	padding: 0
+	height: 450px!important
+
+@media (max-width: 992px)
+	.container-news .col-6
+		max-width:520px!important
+		width: 100%
+		padding: 0
+
+@media (max-width: 767px)
+	.container-news .col-6
+		max-width:520px!important
+		width: 100%
+		padding: 0
+		height: 420px!important
+
+@media (max-width: 480px)
+	.container-news .col-6
+		max-width:300px!important
+		width: 100%
+		padding: 0
+		height: 350px!important
+
+@media (max-width: 320px)
+	.container-news .col-6
+		max-width:250px!important
+		width: 100%
+		padding: 0
+		height: 350px!important
+
+.block-news
+	width:100%
+	height: 450px
+	background-image: url(../img/news.png)
+	background-size: cover
+	background-repeat: no-repeat
+	background-position: center center !important
+	padding: 0
+
+@media (max-width: 767px)
+	.block-news
+		padding: 0 12px
+		height: 420px
+
+@media (max-width: 480px)
+	.block-news
+		height: 350px
+
+.title-news
+	font-size: 30px
+	color: #D2C8AE
+	margin: 0 20px
+
+@media (max-width: 767px)
+	.title-news
+		font-size: 20px!important
+
+@media (max-width: 480px)
+	.title-news
+		font-size: 16px!important
+
+@media (max-width: 320px)
+	.title-news
+		font-size: 14px!important
+
+.title-block
+	width:100%
+	margin-top: 80px!important
+	margin-bottom: 60px
+
+@media (max-width: 767px)
+	.title-block
+		font-size: 20px
+		height: 20px
+
+.title-block img
+	width:170px
+	height: 34px
+
+@media (max-width: 767px)
+	.title-block img
+		width:98px
+		height: 20px
+
+.block-news-title
+	max-width:640px!important
+	width: 100%
+	height: 500px
+	background: rgba(18, 18, 18, 0.5)
+
+@media (max-width: 480px)
+	.block-news-title
+		background: none
+
+.title-link-list
+	list-style-type: none
+	margin: 0 auto
+	width: 452px
+	max-width: 100%
+	padding: 0
+
+.title-link-list li
+	margin: 21px 0
+	padding: 10px 0
+	border-bottom: 1.5px solid #878582
+
+.title-link-news
+	font-size: 18px
+	color: #878582!important
+	display: block
+	width: 100%!important
+
+@media (max-width: 767px)
+	.title-link-news
+		font-size: 12px
+
+@media (max-width: 320px)
+	.title-link-news
+		font-size: 10px
+
+
+.fresh
+	font-size: 24px
+	color: #D2C8AE
+	margin-top: 54px!important
+
+@media (max-width: 767px)
+	.fresh
+		font-size: 18px
+
+@media (max-width: 480px)
+	.fresh
+		font-size: 14px
+		text-align: center
+
+@media (max-width: 320px)
+	.fresh
+		font-size: 12px
+
+.next
+	margin-top:42px
+	text-align: right
+
+@media (max-width: 480px)
+	.next
+		background: #121212
+		margin-top:16px
+
+.next a
+	font-size: 20px
+	color: #D2C8AE!important
+
+@media (max-width: 767px)
+	.next a
+		font-size: 18px
+
+@media (max-width: 480px)
+	.next a, .next
+		font-size: 14px
+		text-align: center !important
+		height: 34px
+		display: flex
+		align-items: center
+		justify-content: center
+
+@media (max-width: 480px)
+	.next a, .next
+		font-size: 12px
+
+.title-fraction
+	width:100%
+	height: 104px
+	margin-top: 128px!important
+	margin-bottom: 64px
+
+@media (max-width: 767px)
+	.title-fraction
+		height: 20px
+		
+
+.title-fraction img
+	width:170px
+	height: 34px
+
+@media (max-width: 767px)
+	.title-fraction img
+		width:98px
+		height: 20px
+
+
+.title-under-fraction
+	font-size: 20px
+	color: #878582
+	margin-top: 40px
+
+@media (max-width: 767px)
+	.title-under-fraction
+		margin-top: 20px
+
+@media (max-width: 480px)
+	.title-under-fraction
+		font-size: 14px
+		margin-top: 20px
+
+@media (max-width: 320px)
+	.title-under-fraction
+		font-size: 10px
+
+@media (max-width: 767px)
+	.accordion-fraction
+		display: none
+
+.accordion
+	margin-top: 64px
+	position: relative
+
+@media (max-width: 767px)
+	.accordion
+		margin-top: 0
+
+.accordion-item
+	background: transparent!important
+
+.accordion-button
+	background: transparent!important
+	font-size: 24px!important
+	color: #B0AFAC!important
+	padding: 16px 0px !important
+	height: 100%
+
+.accordion-button img
+	width: 50px
+	height: auto
+	margin-right: 39px
+	
+.accordion-button:focus
+	border: none !important
+	box-shadow: none !important
+	color: #fff
+
+.accordion-button:not(.collapsed)
+	color: #fff!important
+
+.accordion-button::after
+	display: none
+
+.accordion-body
+	color: #878582
+	font-size: 20px
+	z-index: 20
+	padding: 0!important
+	margin-left: 89px
+
+.bg-fraction
+	width: 100%
+	height: 100%
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	z-index: -1
+	animation: fadeIn
+
+.bg-fraction-close
+	animation: fadeOut
+
+.bg-fraction img
+	width: 100%
+	height: auto
+	
+.accordion-block
+	width: 418px
+
+@media (min-width: 768px)
+	.accordion-fraction-mb
+		display: none
+
+
+.accordion-fraction-mb .accordion-block
+	width: 100%
+
+.accordion-fraction-mb .accordion-header
+	margin-top: 16px
+
+.accordion-fraction-mb	.accordion-button img
+	width: 64px
+	height: auto
+	margin: 0 auto
+
+@media (max-width: 480px)
+	.accordion-fraction-mb	.accordion-button img
+		width: 36px
+
+.accordion-fraction-mb	.accordion-body
+	margin: 0
+
+.accordion-fraction-mb	.accordion-body img
+	width: 100%
+	height: auto
+	margin-top: 35.42px
+
+.accordion-fraction-mb	.accordion-body h1
+	margin: 0
+	font-size: 20px
+	color: #fff!important
+	margin-top: 36px
+	margin-bottom: 16px
+
+@media (max-width: 480px)
+	.accordion-fraction-mb	.accordion-body h1
+		font-size: 14px
+
+@media (max-width: 320px)
+	.accordion-fraction-mb	.accordion-body h1
+		font-size: 12px
+
+.accordion-fraction-mb	.accordion-body p
+	margin: 0
+	font-size: 18px
+
+@media (max-width: 480px)
+	.accordion-fraction-mb	.accordion-body p
+		margin: 0
+		font-size: 12px
+
+@media (max-width: 320px)
+	.accordion-fraction-mb	.accordion-body p
+		margin: 0
+		font-size: 10px
+
+.slider-map
+	display: flex
+	align-items: center
+	justify-content: center
+	margin-bottom: 226px
+
+.slider-map .container-fluid
+	max-width: 1366px!important
+	width: 100%
+
+.title-location
+	width:100%
+	height: 36px
+	margin-top: 129px!important
+	margin-bottom: 33px
+
+.title-location img
+	width:170px
+	height: 34px
+
+.owl-carousel 
+	touch-action: none
+
+.slider-map .thumbnail
+	width: 100% !important
+	max-width: 100%!important
+
+.slider-map .owl-carousel .owl-stage 
+	display: -webkit-box
+	display: -moz-box
+	display: -ms-box
+	display: box
+
+.slider-map .owl-stage-outer
+	padding: 0
+
+.slider-map .owl-carousel .owl-item 
+	display: flex
+	flex: 0 auto
+	width: 500px!important
+
+.owl-carousel .thumbnail 
+	display: flex
+	flex-direction: column
+	margin: 0 auto
+
+.owl-carousel .thumbnail .caption 
+	display: flex
+	flex: auto
+	flex-direction: column
+
+.owl-carousel .thumbnail .caption .flex-text 
+	flex-grow: 1
+
+.slider-map .map-title
+	color: #fff
+	font-size: 24px
+	position: absolute
+	top: 45%
+	left: 0
+	right: 0
+
+.slider-map .owl-nav
+	position: relative
+	display: block
+	width: 720.5px
+	margin: 0 auto
+	top: 48px
+
+.slider-map .owl-nav .owl-prev
+	width: 14.25px
+	position: absolute
+	bottom: -60%
+	left: 0
+	height: 27px
+	background-color: transparent
+	border: none
+	box-shadow: none
+	font: inherit
+	color: inherit
+	padding: 0
+
+.slider-map .owl-nav .owl-next
+	width: 14.25px
+	position: absolute
+	bottom: -60%
+	right: 0
+	height: 27px
+	background: transparent
+	border: none
+	box-shadow: none
+
+.slider-map .owl-nav .owl-prev img, .slider-map .owl-nav .owl-next img
+	width: 100%
+	height: 100%
+
+.slider-map .owl-dots
+	margin-top: 32px!important
+	width: 100%
+	padding-bottom: 30px
+	margin: 0 auto
+	display: flex
+	align-items: center
+	justify-content: center
+
+.slider-map .owl-dot span
+	background: #878582
+	width: 100%
+	height: 100%
+	display: block
+	transition: 0.2s ease
+
+.slider-map .owl-dot.active span
+	background: #fff
+	width: 100%
+	height: 100%
+	display: block
+
+.slider-map .owl-dots button
+	max-width: 100px
+	width: 100%
+	height: 5px
+	border: none
+	margin: 0 16px
+	background: transparent 
+
+.slider-map .map
+	height:100%
+	position: relative
+	left: 0
+	right:0
+	top:0
+
+.slider-map .map .card-body
+	max-width: 500px !important
+	width:100%
+	height: 300px!important
+	margin: 0 auto
+	padding: 0!important
+
+.slider-map .map .card-body img
+	width: 100%
+	height: 100%
+	margin: 0 auto
+	padding: 0 16px!important
+
+.footer
+	background: rgba(18, 18, 18, 0.5)
+
+.footer-nav
+	margin-top: 63px!important
+
+.footer-nav ul
+	list-style-type: none
+	display: flex
+	align-items: center
+	justify-content: center
+	margin: 0
+	padding: 0
+
+@media (max-width: 767px)
+	.footer-nav ul
+		display: flex
+		font-size: 6px
+
+.footer-nav li
+	margin: 0 20px
+
+.footer-nav li a
+	color: #878582
+	font-size: 16px
+
+@media (max-width: 767px)
+	.footer-nav ul li a
+		font-size: 10px
+
+@media (max-width: 480px)
+	.footer-nav ul li a
+		font-size: 8px
+
+@media (max-width: 320px)
+	.footer-nav ul li a
+		font-size: 6px
+
+.footer-copyright
+	width: 776px!important
+	margin: 0 auto
+	padding: 0!important
+	margin-bottom: 66px
+	margin-top: 26px!important
+	color: #878582
+	font-size: 16px
+
+.footer-copyright p
+	margin-bottom: 0
+
+@media (max-width: 767px)
+	.footer-copyright
+		font-size: 10px
+
+@media (max-width: 480px)
+	.footer-copyright
+		font-size: 8px
+
+@media (max-width: 480px)
+	.footer-copyright
+		font-size: 6px
+
+.news-list
+	font-family: "Trajan"!important
+
+.bg-news2
+	background-image: url(../img/bg-news.png)
+	background-size: cover
+	background-repeat: no-repeat
+	background-position: center center
+	height:1100px
+	position: absolute
+	left: 0
+	right: 0
+	top: 0
+	z-index: -1
+
+.title-news-list
+	width: 100%
+	height: 60px
+	margin-top: 200px!important
+	margin-bottom: 256px
+	z-index: 10
+	position: relative
+
+.title-news-list .title-news
+	font-size:50px
+
+@media (max-width: 767px)
+	.title-news-list
+		font-size: 20px
+		height: 20px
+
+.title-news-list img
+	width:219px
+	height: 47px
+	margin: auto 0
+
+@media (max-width: 767px)
+	.title-news-list img
+		width:98px
+		height: 20px
+
+.news-list .news
+	z-index: 10
+	position: relative
+
+.news-list .blacker_blur
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 93.26%)
+	opacity: 0.8
+	width: 100%
+	height: 1100px
+	position: absolute
+	bottom: 0
+	z-index: 0
+
+.news-list .container-news
+	margin-bottom: 64px
+
+.news-list .container-news .col-6
+	max-width:640px!important
+	width: 50%
+	padding: 0
+	height: 500px!important
+
+@media (max-width: 992px)
+	.news-list .container-news .col-6
+		max-width:520px!important
+		width: 100%
+		padding: 0
+
+@media (max-width: 767px)
+	.news-list .container-news .col-6
+		max-width:520px!important
+		width: 100%
+		padding: 0
+		height: 350px!important
+
+@media (max-width: 480px)
+	.news-list .container-news .col-6
+		max-width:300px!important
+		width: 100%
+		padding: 0
+
+@media (max-width: 320px)
+	.news-list .container-news .col-6
+		max-width:250px!important
+		width: 100%
+		padding: 0
+
+.news-list .block-news
+	width:100%
+	height: 500px
+	padding: 0
+
+@media (max-width: 767px)
+	.news-list .block-news
+		max-width:520px!important
+		width: 100%
+		padding: 0
+		height: 350px!important
+
+@media (max-width: 480px)
+	.news-list .block-news
+		max-width:300px!important
+		width: 100%
+		padding: 0
+
+@media (max-width: 320px)
+	.news-list .block-news
+		max-width:250px!important
+		width: 100%
+		padding: 0
+
+.news-list .block-news img
+	width:100%
+	height: 100%
+
+.news-list .fresh
+	font-size: 20px
+	color: #D2C8AE
+	margin-top: 54px!important
+
+@media (max-width: 767px)
+	.news-list .fresh
+		font-size: 18px
+
+@media (max-width: 480px)
+	.news-list .fresh
+		font-size: 14px
+		text-align: center
+
+@media (max-width: 320px)
+	.news-list .fresh
+		font-size: 12px
+
+.news-list .snow2
+	position: absolute
+	top:0
+	left: 0
+	width: 4px
+	height: 4px
+	background-color: #666666
+	border-radius: 50%
+	box-shadow:0 0 5px #ffffff
+	background-size: cover
+	background-repeat: no-repeat
+	z-index: 9
+
+	@for $i from 1 through 50
+		$random-x2: random(1000000) * 0.0001vw
+		$random-offset2: random_range(100000, -100000) * 0.0001vw
+		$random-x-end2: $random-x2 + $random-offset2
+		$random-x-end-yoyo2: $random-x2 / ($random-offset2 / 2)
+		$random-yoyo-time2: random_range(0, 0) / 10000000
+		$random-yoyo-y: $random-yoyo-time2 + 100vh
+		$random-scale2: random(10000) * 0.0001
+		$fall-duration2: random_range(10, 30) * 0.090s
+		$fall-delay2: random(30) * -0.090s
+		&:nth-child(#{$i})
+			opacity: random(10000) * 0.0001
+			transform: translate($random-x2, -10px) scale($random-scale2)
+			animation: fall-#{$i} $fall-duration2 $fall-delay2 linear infinite
+			
+		@keyframes fall-#{$i}
+			#{percentage($random-yoyo-time2)}
+				transform: translate($random-x-end2, $random-yoyo-y) scale($random-scale2)
+			to
+				transform: translate($random-x-end-yoyo2, 100vh) scale($random-scale2)
+
+@media (max-width: 480px)
+	.news-list .snow2
+		position: absolute
+		top:0
+		left: 0
+		width: 3px
+		height: 3px
+		background-color: #666666
+		border-radius: 50%
+		box-shadow:0 0 5px #ffffff
+		background-size: cover
+		background-repeat: no-repeat
+		z-index: 9
+		@for $i from 1 through 50
+			$random-x2: random(1000000) * 0.0001vw
+			$random-offset2: random_range(-100000, 100000) * -0.0001vw
+			$random-x-end2: $random-x2 + $random-offset2
+			$random-x-end-yoyo2: $random-x2 / ($random-offset2 / 2)
+			$random-yoyo-time2: random_range(0, 0) / 10000000
+			$random-yoyo-y: $random-yoyo-time2 + 100vh
+			$random-scale2: random(10000) * 0.0001
+			$fall-duration2: random_range(10, 30) * 0.090s
+			$fall-delay2: random(30) * -0.090s
+			&:nth-child(#{$i})
+				opacity: random(10000) * 0.0001
+				transform: translate($random-x2, -10px) scale($random-scale2)
+				animation: fall-#{$i} $fall-duration2 $fall-delay2 linear infinite
+
+.pagination
+	margin-top: 146px
+	margin-bottom: 256px
+
+.page-link
+	background: transparent !important
+	color: #D2C8AE!important
+	border: none !important
+	font-size: 30px
+	padding: 0px!important
+	margin: 0 10px
+
+@media (max-width: 767px)
+	.page-link
+		font-size: 20px
+		height: 20px
+
+@media (max-width: 480px)
+	.page-link
+		font-size: 16px
+
+@media (max-width: 320px)
+	.page-link
+		font-size: 14px
+
+.page-item
+	margin: 0 10px
+
+@media (max-width: 767px)
+	.page-item
+		margin: 0 8px
+
+@media (max-width: 480px)
+	.page-item
+		margin: 0 6px
+
+@media (max-width: 320px)
+	.page-item
+		margin: 0 4px
+
+.page-item a.active
+	transition: .3s ease
+	filter: drop-shadow(0px 0px 8px #FFFFFF)
+
+.page-item:last-child .page-link
+	border-radius: 0px !important
+.page-link:focus
+	box-shadow: none !important
+
+.page-link.line
+	width: 170px
+	height: auto
+
+.page-link img
+	width: 100%
+	height: auto
+
+@media (max-width: 767px)
+	.page-link.line
+		width:98px
+		height: 20px
+
+@media (max-width: 402px)
+	.page-link.line
+		width:60px
+		height: 20px
+
+.year .title-news
+	font-size: 20px
+
+.year .title-block
+	width:100%
+	margin-top: 80px!important
+	margin-bottom: 60px
+
+@media (max-width: 767px)
+.year  .title-block
+	font-size: 20px
+	height: 20px
+
+.year .title-block img
+	width: 132px !important
+	height: 29px !important
+
+
+@media (max-width: 767px)
+.year .title-block img
+	width:98px
+	height: 20px
+
+//select-fraction
+
+.select-fraction, .index
+	background-color: #000
+	font-family: "Trajan"
+
+.game-logo
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, #696969 100%)
+	-webkit-background-clip: text
+	-webkit-text-fill-color: transparent
+	background-clip: text
+	text-fill-color: transparent
+	font-size: 50px
+	margin-top: 126px
+	margin-bottom: 128px
+
+.line-game
+	max-width: 1326px!important
+	width: 100%
+	margin: 0 auto
+
+.line-game img
+	width: 100%
+	height: auto
+	margin-bottom: 128px
+
+.select-fraction .title-news
+	font-size: 24px
+	color: #fff
+	margin: 0 20px
+	text-shadow: 2px 4px 12px rgba(255, 255, 255, 0.8)
+	display: flex
+	align-items: center
+
+@media (max-width: 767px)
+	.select-fraction .title-news
+		font-size: 20px!important
+
+@media (max-width: 480px)
+	.select-fraction .title-news
+		font-size: 16px!important
+
+@media (max-width: 320px)
+	.select-fraction .title-news
+		font-size: 14px!important
+
+.select-fraction .title-block
+	width:100%
+	margin-top: 0px!important
+	margin-bottom: 64px
+
+@media (max-width: 767px)
+	.select-fraction .title-block
+		font-size: 20px
+		height: 20px
+
+.select-fraction .title-block img
+	width:260px
+	height: 40px
+
+@media (max-width: 767px)
+	.select-fraction .title-block img
+		width:98px
+		height: 20px
+
+.card-fraction
+	margin-bottom: 64px!important
+
+.select-fraction .card-fraction .card-body
+	position: relative
+	max-width:250px
+	width: 100%
+	height:500px
+	filter: grayscale(100%)
+	transition: .5s ease
+	filter: saturate(0%)
+
+.select-fraction .card-fraction .card-body:hover
+	filter: grayscale(0%)
+	filter: saturate(200%)
+
+.castle-animate, .dungeon-animate
+	animation-duration: 1.5s!important
+
+.stronghold-animate, .fortress-animate
+	animation-duration: 1.8s!important
+
+.tower-animate, .citadel-animate
+	animation-duration: 2.1s!important
+
+.inferno-animate, .necropolis-animate
+	animation-duration: 2.4s!important
+
+.card-fraction
+	max-width: 250px
+	height: 500px
+	margin: 0 auto
+	border: none!important
+	box-shadow: none!important
+	background-color: transparent!important
+
+.bg-img-card-border
+	max-width:250px
+	width: 100%
+	height:500px
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	z-index: 2
+	margin: 0 auto
+	overflow: hidden
+
+.bg-img-card-border img
+	width: 100%
+	height: auto
+	transition: .5s ease
+
+.bg-img-card
+	max-width:250px
+	width: 100%
+	height:500px
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	z-index: 1
+	margin: 0 auto
+
+.bg-img-card img
+	width: 100%
+	height: auto
+
+.title-card
+	font-size: 20px
+	color: #BCBCBC!important
+	position: absolute
+	top: 40px
+	left: 0
+	right: 0
+	z-index: 3
+	margin: 0 auto
+
+.line-game-bottom
+	max-width: 1326px!important
+	width: 100%
+	margin: 0 auto
+
+.line-game-bottom img
+	width: 100%
+	height: auto
+	margin-top: 64px
+	margin-bottom: 80px
+
+//shop
+
+.shop, .battle, .rating, .hero, .profile, .quests
+	background-color: #000
+	font-family: "Trajan"
+
+.shop .object .game-logo, .battle .game-logo, .rating .game-logo, .hero .game-logo, .quests .game-logo
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, #696969 100%)
+	-webkit-background-clip: text
+	-webkit-text-fill-color: transparent
+	background-clip: text
+	text-fill-color: transparent
+	font-size: 50px
+	margin-top: 126px
+	margin-bottom: 32px!important
+
+.shop .navbar-nav, .battle .navbar-nav, .rating .navbar-nav, .hero .navbar-nav, .quests .navbar-nav
+	width: 100% !important
+	margin-top: 0px!important 
+	margin-bottom: 120px
+
+.shop .nav-item, .battle .nav-item, .rating .nav-item, .hero .nav-item, .quests .nav-item
+	margin: auto 61.5px!important
+
+@media (max-width: 991px)
+	.shop .nav-item, .battle .nav-item, .rating .nav-item, .hero .nav-item, .quests .nav-item
+		margin: auto 26px!important
+
+
+.shop .navbar-nav .nav-link, .battle .navbar-nav .nav-link, .rating .navbar-nav .nav-link, .hero .nav-link, .quests .nav-link
+	padding:10px 1px!important
+	color: #878582!important
+	font-size: 16px
+	letter-spacing: -0.05em
+	line-height: 19.2px
+	border-bottom: 1.5px solid transparent
+	margin-bottom: 10px
+	transition: .3s ease
+
+.shop .navbar-nav a.active, .battle .navbar-nav a.active, .rating .navbar-nav a.active, .hero a.active, .quests a.active
+	transition: .3s ease
+	border-bottom: 1.5px solid #878582
+	filter: none
+
+.shop .navbar-nav .nav-link:hover, .battle .navbar-nav .nav-link:hover, .rating .navbar-nav .nav-link:hover, .hero .navbar-nav .nav-link:hover, .quests .navbar-nav .nav-link:hover
+	transition: .3s ease
+	border-bottom: 1.5px solid #878582
+	filter: none
+
+.shop .navbar-nav .nav-link:active, .battle .navbar-nav .nav-link:active, .rating .navbar-nav .nav-link:active, .hero .navbar-nav .nav-link:active, .quests .navbar-nav .nav-link:active
+	transition: .3s ease
+	border-bottom: 1.5px solid #878582
+	filter: none
+
+
+@media (max-width: 767px)
+	.shop .navbar, .battle .navbar, .rating .navbar, .hero .navbar, .quests .navbar
+		background-size: 100% 44px
+		min-height: 44px!important
+
+.shop .title-news, .battle .title-news, .rating .title-news, .hero .title-news, .quests .title-news
+	font-size: 24px
+	color: #fff
+	margin: 0 20px
+	text-shadow: 2px 4px 12px rgba(255, 255, 255, 0.8)
+	display: flex
+	align-items: center
+
+@media (max-width: 767px)
+	.shop .title-news, .battle .title-news, .rating .title-news, .hero .title-news, .quests .title-news
+		font-size: 20px!important
+
+@media (max-width: 480px)
+	.shop .title-news, .battle .title-news, .rating .title-news, .hero .title-news, .quests .title-news
+		font-size: 16px!important
+
+@media (max-width: 320px)
+	.shop .title-news, .battle .title-news, .rating .title-news, .hero .title-news, .quests .title-news
+		font-size: 14px!important
+
+.shop .title-block, .battle .title-block, .rating .title-block, .hero .title-block, .quests .title-block
+	width:100%
+	margin-top: 0px!important
+	margin-bottom: 64px
+
+@media (max-width: 767px)
+	.shop .title-block, .battle .title-block, .rating .title-block, .hero .title-block, .quests .title-block
+		font-size: 20px
+		height: 20px
+
+.shop .title-block img, .battle .title-block img, .rating .title-block img, .hero .title-block img, .quests .title-block img
+	width:260px
+	height: 40px
+
+@media (max-width: 767px)
+	.shop .title-block img, .battle .title-block img, .rating .title-block img, .hero .title-block img, .quests .title-block img
+		width:98px
+		height: 20px
+
+.shop .card-fraction
+	margin-bottom: 64px!important
+
+.shop .card-fraction .card-body
+	position: relative
+	max-width:320px
+	width: 100%
+	height:370px
+	filter: grayscale(100%)
+	transition: .5s ease
+	filter: saturate(100%)
+
+.card-shop-1
+	animation-duration: 1.5s!important
+
+.card-shop-2
+	animation-duration: 1.5s!important
+
+.card-shop-3
+	animation-duration: 1s!important
+
+.shop .card-fraction
+	max-width: 320px
+	height: 370px
+	margin: 0 auto
+	border: none!important
+	box-shadow: none!important
+	background-color: transparent!important
+
+.shop .title-card
+	font-size: 20px
+	color: #BCBCBC!important
+	position: absolute
+	top: 29.67px
+	left: 0
+	right: 0
+	z-index: 3
+	margin: 0 auto
+
+.shop .bg-img-card-border
+	max-width:320px
+	width: 100%
+	height:370px
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	z-index: 1
+	margin: 0 auto
+
+.shop .bg-img-card-border img
+	width: 100%
+	height: auto
+	transition: .5s ease
+
+.shop .bg-img-card
+	max-width:90px
+	width: 100%
+	height:240px
+	position: absolute
+	top: 50.67px
+	left: 0
+	right: 0
+	z-index: 2
+	margin: 0 auto
+	transform: rotate(45deg)
+
+.shop .bg-img-card img
+	width: 100%
+	height: auto
+
+.coin-shop
+	align-items: center
+	justify-content: center
+	position: absolute
+	top: 288.01px
+	left: 0
+	right: 0
+	z-index: 2
+	margin: 0 auto
+
+.coin-shop p
+	align-items: center
+	justify-content: center
+	display: flex
+	margin-bottom: 0px!important
+	font-size: 18px
+	color: #D2C8AE
+	margin-right: 16px
+
+.coin-shop img
+	width: 40px
+	height: 40px
+
+.crystall .bg-img-card
+	max-width:90px
+	width: 100%
+	height:240px
+	position: absolute
+	top: 50.67px
+	left: 0
+	right: 0
+	z-index: 2
+	margin: 0 auto
+	transform: rotate(45deg)
+
+.crystall .bg-img-card img
+	width: 100%
+	height: auto
+
+.battle
+	background-color: #000
+	font-family: "Trajan"
+
+.battle .col-5, .battle .col, .hero .col-5, .hero .col
+	height: 500px
+
+.bg-characteristic
+	max-width:250px
+	width: 100%
+	height:500px
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	z-index: 2
+	margin: 0 auto
+	overflow: hidden
+
+.bg-characteristic img
+	width: 100%
+	height: auto
+	transition: .5s ease
+
+.title-characteristic
+	font-size: 12px
+	color: #D2C8AE!important
+	position: absolute
+	top: 32px
+	left: 0
+	right: 0
+	z-index: 3
+	margin: 0 auto
+	letter-spacing: 0.12em
+	line-height: 20px
+
+.health-gg
+	font-size: 12px
+	color: #BCBCBC!important
+	position: absolute
+	top: 92px
+	left: 35px
+	right: 0
+	z-index: 3
+	letter-spacing: 0.12em
+
+.health
+	position: absolute
+	top: 124px
+	left: 35px
+	right: 0
+	z-index: 3
+	max-width: 180px
+	width: 100%
+	height: 5px!important
+	border-radius: 20px!important
+	background: linear-gradient(180deg, #252525 0%, rgba(0, 0, 0, 0.5) 100%)!important
+
+.health .progress-bar
+	z-index: 3
+	width: 100%
+	height: 100%
+	border-radius: 20px
+	background: linear-gradient(180deg, #AB1A1A 0%, #AB1A1A 0.01%, rgba(0, 0, 0, 0.5) 100%)!important
+
+.protection-gg
+	font-size: 12px
+	color: #BCBCBC!important
+	position: absolute
+	top: 161px
+	left: 35px
+	right: 0
+	z-index: 3
+	letter-spacing: 0.12em
+
+.protection
+	position: absolute
+	top: 193px
+	left: 35px
+	right: 0
+	z-index: 3
+	max-width: 180px
+	width: 100%
+	height: 5px!important
+	border-radius: 20px!important
+	background: linear-gradient(180deg, #252525 0%, rgba(0, 0, 0, 0.5) 100%)!important
+
+.protection .progress-bar
+	z-index: 3
+	width: 50%
+	height: 100%
+	border-radius: 20px
+	background: linear-gradient(180deg, #1A54AB 0%, rgba(0, 0, 0, 0.5) 100%)!important
+
+.shield-gg
+	font-size: 12px
+	color: #BCBCBC!important
+	position: absolute
+	top: 230px
+	left: 35px
+	right: 0
+	z-index: 3
+	letter-spacing: 0.12em
+
+.shield
+	position: absolute
+	top: 262px
+	left: 35px
+	right: 0
+	z-index: 3
+	max-width: 180px
+	width: 100%
+	height: 5px!important
+	border-radius: 20px!important
+	background: linear-gradient(180deg, #252525 0%, rgba(0, 0, 0, 0.5) 100%)!important
+
+.shield .progress-bar
+	z-index: 3
+	width: 50%
+	height: 100%
+	border-radius: 20px
+	background: linear-gradient(180deg, #AB1A1A 0%, #AB1A1A 0.01%, rgba(0, 0, 0, 0.5) 100%)!important
+
+.reward
+	display: inline-flex
+	position: absolute
+	top: 309px
+	left: 35px
+	right: 0
+	z-index: 3
+	align-items: center
+	justify-content: left
+	height: 25px
+
+.reward p
+	margin-bottom: 0px!important
+	font-size: 12px
+	color: #D2C8AE
+	margin-right: 10px
+
+.reward h1
+	margin-bottom: 0px!important
+	font-size: 12px
+	color: #D2C8AE
+	margin-right: 20px
+
+.reward img
+	width: 25px
+	height: 25px
+	margin-right: 10px
+	margin-bottom: 2px
+
+.title-discrection
+	font-size: 12px
+	color: #878582!important
+	position: absolute
+	top: 32px
+	left: 0
+	right: 0
+	z-index: 3
+	margin: 0 auto
+	letter-spacing: 0.12em
+	width: 180px
+	text-indent: 25px
+	line-height: 20px
+	font-weight: 400
+
+.title-discrection span
+	font-size: 12px
+	color: #D2C8AE!important
+	z-index: 3
+	margin: 0 auto
+	letter-spacing: 0.12em
+	width: 180px
+	text-indent: 25px
+	line-height: 20px
+	font-weight: 400
+
+.title-discrection2
+	font-weight: 400
+	font-size: 12px
+	color: #878582!important
+	position: absolute
+	top: 268px
+	left: 0
+	right: 0
+	z-index: 3
+	margin: 0 auto
+	letter-spacing: 0.12em
+	width: 180px
+	text-indent: 25px
+	line-height: 20px
+
+.opponent
+	max-width:350px
+	width: 100%
+	height:500px
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	z-index: 1
+	margin: 0 auto
+
+.opponent .bg-img-card-border
+	max-width:350px
+	width: 100%
+	height:500px
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	z-index: 1
+	margin: 0 auto
+
+.health-opp
+	position: absolute
+	top: 426px
+	left: 0px
+	right: 0
+	z-index: 3
+	max-width: 212px
+	width: 100%
+	margin: 0 auto
+	height: 5px!important
+	border-radius: 20px!important
+	background: linear-gradient(180deg, #252525 0%, rgba(0, 0, 0, 0.5) 100%)!important
+
+.health-opp .progress-bar
+	z-index: 3
+	width: 100%
+	height: 100%
+	border-radius: 20px
+	background: linear-gradient(180deg, #AB1A1A 0%, #AB1A1A 0.01%, rgba(0, 0, 0, 0.5) 100%)!important
+
+.characteristic-opp
+	max-width: 212px
+	width: 100%
+	position: absolute
+	top: 446px
+	left: 0px
+	right: 0
+	z-index: 3
+	align-items: center
+	justify-content: center
+	margin: 0 auto
+
+.characteristic-opp p
+	color: #D2C8AE
+	font-size: 12px
+	letter-spacing: 0.12em
+	line-height: 14px
+	font-weight: 400
+
+.title-hint
+	animation-duration: 1s!important
+
+.title-hint p
+	font-size: 12px
+	width: 400px
+	margin: 0 auto
+	letter-spacing: 0.12em
+	color: #BCBCBC
+	line-height: 20px
+	margin-top: 20px
+	margin-bottom: 40px
+
+.btn-attack
+	width: 350px!important
+	height: 110px
+	animation-duration: 1.4s!important
+
+.btn-attack .btn
+	width: 100%!important
+	margin: 0 auto
+	color: #fff!important
+	text-shadow: 4px 4px 12px rgba(255, 255, 255, 0.5)
+	letter-spacing: 0.12em
+	line-height: 22px
+	transition: .5s ease
+
+.btn-attack .btn:focus
+	box-shadow: none
+
+.btn-attack img
+	width: 100%
+	height: auto
+
+.feedback
+	background-color: #000
+	font-family: "Trajan"
+
+.input-feedback 
+	width: 392px
+	margin-right: 24px!important
+
+.input-feedback-theme .input-feedback
+	margin-top: 40px!important
+
+.input-feedback-message .input-feedback
+	margin-top: 40px!important
+
+.input-feedback-theme, .input-feedback-theme .input-feedback
+	width: 808px
+
+.input-feedback-message, .input-feedback-message .input-feedback
+	width: 808px
+
+
+.input-feedback-theme .theme 
+	width: 808px!important
+	margin: 0 auto
+
+
+.input-feedback-theme .theme 
+	width: 808px!important
+	margin: 0 auto
+	margin-bottom: 40px!important
+
+.input-feedback-message .message 
+	width: 808px!important
+	margin: 0 auto
+	height: 200px!important
+	padding: 30px 32px!important
+	resize: none !important
+	line-height: 28px
+
+.input-feedback-message .message 
+	overflow: auto
+	overflow-x: hidden
+
+.input-feedback-message .message::-webkit-scrollbar-track
+	background-color: #121212
+
+.input-feedback-message .message::-webkit-scrollbar
+	width: 6px
+	background-color: #121212
+
+.input-feedback-message .message::-webkit-scrollbar-thumb
+	border-radius: 20px
+	background-color: rgba(0, 0, 0, 0.81)
+
+.input-feedback .login, .input-feedback .email
+	width: 392px!important
+	margin: 0!important
+	padding: 16px 32px!important
+	color: #878582!important
+
+.btn-feedback
+	width: 808px
+	margin: 0 auto
+
+.btn-feedback-block
+	width: 808px
+	margin-right: 24px!important
+
+.btn-feedback .btn
+	width: 100%!important
+	color: #fff!important
+	background-color: #252525
+	margin-top: 20px
+	padding: 16px 32px!important
+	line-height: 19px
+	font-size: 16px
+	display: flex
+	justify-content: center
+	align-items: center
+	height: 51px
+
+.feedback .line-game-bottom img
+	margin-top: 128px!important
+	margin-bottom: 256px!important
+
+.rating-player
+	background-color: #000
+	font-family: "Trajan"
+
+.prize
+	position: absolute
+	top: 92px
+	left: 35px
+	right: 0
+	z-index: 3
+	margin: 0 auto
+	letter-spacing: 0.12em
+	line-height: 20px
+
+.prize-block
+	justify-content: left
+	align-items: center
+	padding: 8.5px 0 
+	margin-bottom: 40px
+
+.prize-block img
+	width: 20px
+	height: 20px
+
+.user_name
+	color: #BCBCBC
+	line-height: 20px
+	letter-spacing: 0.12em
+	font-size: 12px
+	margin-bottom: 0!important
+	padding-left: 12px
+
+.bg-item
+	position: relative
+	z-index: 1
+	width: 100px
+	height: 100px
+	margin-bottom: 32px
+
+.bg-item img
+	width: 100%
+	height: 100%
+
+.bg-item .item
+	position: absolute
+	top: 3px
+	left: 0
+	right: 0
+	bottom: 0
+	margin: 0 auto
+	z-index: 2
+	width: 88px
+	height: 94px
+
+.bg-item .item .item img
+	width: 100%
+	height: 100%
+
+.user_hero h1
+	letter-spacing: 0.12em
+	text-shadow: 2px 4px 12px rgba(255, 255, 255, 0.8)
+	color: #FFFFFF
+	line-height: 20px
+	font-size: 20px!important
+	margin-bottom: 12px
+
+.user_level h1
+	letter-spacing: 0.12em
+	color: #878582
+	line-height: 20px
+	font-size: 16px!important
+	margin-bottom: 20px
+
+.next-level
+	letter-spacing: 0.12em
+	color: #BCBCBC
+	line-height: 20px
+	font-size: 12px!important
+	margin: 20px auto
+
+.level-progress
+	max-width: 350px
+	width: 100%
+	height: 12px!important
+	border-radius: 20px!important
+	background: linear-gradient(180deg, #252525 0%, rgba(0, 0, 0, 0.5) 100%)!important
+	margin: 0 auto
+
+.level-progress .progress-bar
+	z-index: 3
+	width: 50%
+	height: 100%
+	border-radius: 20px
+	background: linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.5) 100%)!important
+
+.profile-login
+	color: #878582!important
+	font-size: 14px
+	line-height: 17px
+	margin-bottom: 0!important
+	background-color: #0B0B0B
+	width: 392px
+	height: 49px
+	padding: 16px 32px
+	border-radius: 6px
+
+.profile-email
+	color: #878582!important
+	font-size: 14px
+	line-height: 17px
+	margin-bottom: 0!important
+	background-color: #0B0B0B
+	width: 392px
+	height: 49px
+	padding: 16px 32px
+	border-radius: 6px
+
+.profile-wallet
+	background-color: #0B0B0B
+	padding: 16px 32px
+	height: 132px
+	width: 808px
+	border-radius: 8px
+
+.wallet
+	display: flex
+	align-items: center
+	height: 40px
+	margin-bottom: 20px
+
+.wallet .coin
+	color: #878582
+	font-size: 20px
+	line-height: 24px
+	margin-bottom: 0
+	padding-right: 20px
+
+.wallet img
+	width: 40px!important
+	height: 40px!important
+
+.btn-wallet .btn
+	color: #fff!important
+	background-color: #252525
+	padding: 16px 32px
+	width: 200px
+	height: 49px
+	line-height: 17px
+	font-size: 14px
+
+.btn-wallet .btn:focus
+	box-shadow: none
+
+.shop-list
+	background-color: #0B0B0B
+	padding: 16px 32px
+	height: 60px
+	width: 808px
+	border-radius: 8px
+
+.shop-list p
+	color: #878582
+	font-size: 14px
+	line-height: 28px
+
+.title-quests h1 
+	line-height: 24px
+	font-size: 20px
+	color: #D2C8AE
+	letter-spacing: 0.12em
+	position: absolute
+	top: 40px
+	left: 0
+	right: 0
+	z-index: 3
+
+.done
+	position: absolute
+	top: 376px
+	left: 0px
+	right: 0
+	z-index: 3
+	max-width: 180px
+	width: 100%
+	margin: 0 auto
+	height: 8px!important
+	border-radius: 20px!important
+	background: linear-gradient(180deg, #252525 0%, rgba(0, 0, 0, 0.5) 100%)!important
+
+.done .progress-bar
+	z-index: 3
+	width: 100%
+	height: 100%
+	border-radius: 20px
+	background: linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0.5) 100%)
+
+.title-done
+	position: absolute
+	top: 400px
+	left: 0px
+	right: 0
+	z-index: 3
+	font-size: 12px
+	line-height: 14px
+	letter-spacing: 0.12em
+	color: #BCBCBC
+	width: 200px
+	margin: 0 auto
